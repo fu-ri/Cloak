@@ -35,7 +35,7 @@ Sometimes you want to keep your browsing discreet, or just customize your tab ti
 
 ---
 
-## Demo
+## Try it
 
 Try it yourself by adding this bookmarklet to your browser:
 
