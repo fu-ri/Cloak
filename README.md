@@ -1,10 +1,10 @@
 # Cloak
 
-![Cloak Logo](https://raw.githubusercontent.com/fu-ri/Cloak/refs/heads/main/Cloak.png)
+![Cloak Logo](https://raw.githubusercontent.com/fu-ri/Cloak/refs/heads/main/Cloakico.png)
 
 ## What is Cloak?
 
-**Cloak** is a simple and lightweight **tab cloaker** tool designed to help you quickly change your browser tab’s **title** and **favicon** — perfect for keeping your tabs discreet or customizing them to your liking.
+**Cloak** is a simple and lightweight **tab cloaker** tool that lets you quickly change your browser tab’s **title** and **favicon** — perfect for keeping your tabs discreet or customizing them to your liking.
 
 ---
 
@@ -12,9 +12,6 @@
 
 - **Change Tab Title:** Easily set a custom tab title to disguise the page you’re viewing.
 - **Change Favicon:** Replace the tab’s favicon with any URL you provide.
-- **Compact UI:** A slide-out drawer toggled by a small button on the right side of your browser window.
-- **Smooth Animations:** The drawer slides in and out smoothly for a polished user experience.
-- **No Dependencies:** Pure JavaScript and CSS — no external libraries except Google Fonts for style.
 - **Bookmarklet Friendly:** Runs instantly as a bookmarklet, no installation needed.
 
 ---
