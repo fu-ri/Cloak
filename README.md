@@ -1,6 +1,6 @@
 # Cloak
 
-![Cloak Logo](https://raw.githubusercontent.com/fu-ri/Cloak/refs/heads/main/Cloakico.png)
+![Cloak Logo](https://raw.githubusercontent.com/fu-ri/Cloak/refs/heads/main/Cloak.png)
 
 ## What is Cloak?
 
