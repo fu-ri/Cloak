@@ -1,1 +1,264 @@
-javascript:(function(){if(document.getElementById('side-button'))return;var link=document.createElement('link');link.href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap";link.rel="stylesheet";document.head.appendChild(link);var style=document.createElement(%27style%27);style.textContent="body{margin:0;height:100vh;}#side-button{position:fixed;top:50%;right:0;width:20px;height:50px;background-color:rgba(51,51,51,0.8);border-top-left-radius:12px;border-bottom-left-radius:12px;color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;font-size:32px;transform:translateY(-50%);transition:right 0.3s ease;z-index:10000;}#side-button.moved{ } .chevron{display:inline-block;transition:transform 0.3s ease;}#side-button.moved .chevron{transform:rotate(180deg);}#side-drawer{position:fixed;top:50%;right:-280px;width:250px;height:400px;background-color:rgba(51,51,51,0.8);border-top-left-radius:24px;border-bottom-left-radius:24px;color:white;display:block;padding-top:70px;padding-left:15px;padding-right:15px;user-select:none;font-size:16px;transform:translateY(-50%);transition:right 0.3s ease;z-index:9999;}#side-drawer.moved{right:0;}#drawer-icon{position:absolute;top:5px;left:5px;width:50px;height:50px;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(0,0,0,0.1));border-radius:16px;box-shadow:0 4px 6px rgba(0,0,0,0.2);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:default;border:1px solid rgba(255,255,255,0.2);box-sizing:border-box;display:flex;align-items:center;justify-content:center;}#drawer-title{position:absolute;top:5px;left:50%;transform:translateX(-50%);font-family:'Fredoka One', cursive, sans-serif;font-size:40px;color:black;-webkit-text-stroke:1px white;user-select:none;pointer-events:none;}#drawer-description{font-family:sans-serif;font-size:14px;color:#ccc;margin-top:10px;margin-left:15px;margin-right:20px;line-height:1.4;text-align:left;position:relative;}.button{background-color:rgba(128,128,128,0.2);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:6px 12px;font-size:28px;font-family:sans-serif;cursor:pointer;transition:background-color 0.2s ease;}.button:hover{background-color:rgba(128,128,128,0.35);}.button:focus{outline:none;box-shadow:0 0 0 3px rgba(128,128,128,0.6);}.textbox{width:100%;max-width:300px;padding:8px 12px;font-size:16px;font-family:Arial,sans-serif;border:2px solid rgba(200,200,200,0.3);border-radius:8px;background-color:rgba(30,30,30,0.6);color:#eee;box-sizing:border-box;transition:border-color 0.3s ease,box-shadow 0.3s ease,background-color 0.3s ease;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);margin-top:10px;}.textbox::placeholder{color:rgba(200,200,200,0.5);}.textbox:focus{outline:none;border-color:rgba(128,128,128,0.8);box-shadow:0 0 10px rgba(128,128,128,0.7);background-color:rgba(40,40,40,0.8);}#thing-ask{font-family:sans-serif;font-size:14px;color:#ccc;margin-top:20px;margin-left:5px;margin-right:20px;line-height:1.4;text-align:left;}";document.head.appendChild(style);var btn=document.createElement('div');btn.id='side-button';btn.innerHTML='<span class="chevron">❰</span>';document.body.appendChild(btn);var drawer=document.createElement('div');drawer.id='side-drawer';drawer.innerHTML="<img src='https://raw.githubusercontent.com/fu-ri/Cloak/refs/heads/main/Cloakico.png' id='drawer-icon' /><div id='drawer-title'>Cloak</div><div id='drawer-description'><span><strong>A simple tab cloaker.</strong></span></div><div id='thing-ask'>Tab title here:</div><input id='tabTitle' type='text' class='textbox' placeholder='Type here...' /><div id='thing-ask'>Favicon URL here:</div><input id='favic' type='text' class='textbox' placeholder='Type here...' /><button id='go' class='button' style='font-size:14px;margin-top:5px;'>Go</button>";document.body.appendChild(drawer);btn.addEventListener('click',function(){btn.classList.toggle('moved');drawer.classList.toggle('moved');if(btn.classList.contains('moved')){btn.style.right=drawer.offsetWidth+'px';drawer.style.right='0';}else{btn.style.right='0';drawer.style.right='-280px';}});var goBtn=document.getElementById('go');goBtn.addEventListener('click',function(){var title=document.getElementById('tabTitle').value.trim();var favic=document.getElementById('favic').value.trim();if(title!==""){document.title=title;}if(favic!==""){var iconLink=document.querySelector("link[rel~='icon']");if(!iconLink){iconLink=document.createElement('link');iconLink.rel='icon';document.head.appendChild(iconLink);}iconLink.href=favic;}});})();
+    const btn = document.getElementById('side-button');
+    const drawer = document.getElementById('side-drawer'); 
+    const backBtn = document.getElementById('return');
+    const presetsBtn = document.getElementById('presets');
+    const settingsBtn = document.getElementById('settings');
+    const cloaking = document.getElementById('aboutBlank');
+    const settingsIcon = settingsBtn.querySelector('.settings-icon');
+    const presetNames = [
+  "Google",
+  "Google Drive",
+  "Google Docs",
+  "Google Sheets",
+  "Google Calendar",
+  "YouTube",
+  "Wikipedia",
+  "Gmail",
+  "Classroom",
+  "Google Scholar",
+  "Khan Academy",
+  "Quizlet",
+  "Notion",
+  "Grammarly",
+  "Desmos",
+  "Stack Overflow",
+  "Outlook",
+  "Zoom",
+  "Slack",
+  "Trello",
+  "Canva",
+  "Dropbox",
+  "LinkedIn",
+  "Microsoft",
+  "Reddit",
+  "Amazon",
+  "Medium",
+  "EdX",
+  "Coursera",
+  "OpenStax",
+  "Wolfram Alpha",
+  "arXiv",
+  "JSTOR",
+  "Overleaf",
+  "Zotero",
+  "PBS",
+  "National Geographic",
+  "Project Gutenberg",
+  "Internet Archive",
+  "Wayback Machine",
+  "eBay",
+  "PayPal",
+  "Yahoo",
+  "Bing",
+  "Apple",
+  "Code.org",
+  "Merriam-Webster",
+  "RefDesk",
+  "WordPress",
+  "Dev.to"
+];
+const presetFavicons = [
+  "https://www.google.com/favicon.ico", // Google
+  "https://ssl.gstatic.com/docs/doclist/images/infinite_arrow_favicon_5.ico", // Google Drive
+  "https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico", // Google Docs
+  "https://ssl.gstatic.com/docs/spreadsheets/favicon3.ico", // Google Sheets
+  "https://cdn1.iconfinder.com/data/icons/google-new-logos-1/32/google_calendar_new_logo-512.png", // Google Calendar ✅ WORKS
+  "https://www.google.com/s2/favicons?sz=64&domain=youtube.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=wikipedia.org",
+  "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico", // Gmail ✅ FIXED
+  "https://ssl.gstatic.com/classroom/favicon.png",
+  "https://scholar.google.com/favicon.ico", // Google Scholar
+  "https://www.google.com/s2/favicons?sz=64&domain=khanacademy.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=quizlet.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=notion.so",
+  "https://www.google.com/s2/favicons?sz=64&domain=grammarly.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=desmos.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=stackoverflow.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=outlook.live.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=zoom.us",
+  "https://www.google.com/s2/favicons?sz=64&domain=slack.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=trello.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=canva.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=dropbox.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=linkedin.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=microsoft.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=reddit.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=amazon.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=medium.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=edx.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=coursera.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=openstax.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=wolframalpha.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=arxiv.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=jstor.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=overleaf.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=zotero.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=pbs.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=nationalgeographic.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=gutenberg.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=archive.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=archive.org/web",
+  "https://www.google.com/s2/favicons?sz=64&domain=ebay.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=paypal.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=yahoo.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=bing.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=apple.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=code.org",
+  "https://www.google.com/s2/favicons?sz=64&domain=merriam-webster.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=refdesk.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=wordpress.com",
+  "https://www.google.com/s2/favicons?sz=64&domain=dev.to"
+];
+
+let blankOn = false;
+let inSettings = false;
+let lastPage = 'page1';
+let cloakWindow = null;
+
+function blankCloak(title, favicon) {
+  if (cloakWindow && !cloakWindow.closed) {
+    cloakWindow.focus();
+    return;
+  }
+
+  cloakWindow = window.open('about:blank', '_blank');
+
+  if (!cloakWindow) {
+    alert('Popup blocked! Please allow popups for this site.');
+    return;
+  }
+
+  // Set title and favicon only once after opening
+  cloakWindow.document.title = title || 'New Tab';
+
+  if (favicon) {
+    const link = cloakWindow.document.createElement('link');
+    link.rel = 'icon';
+    link.href = favicon;
+    cloakWindow.document.head.appendChild(link);
+  }
+
+  const iframe = cloakWindow.document.createElement('iframe');
+  iframe.src = window.location.href;
+  iframe.style.border = 'none';
+  iframe.style.width = '100vw';
+  iframe.style.height = '100vh';
+  iframe.style.margin = '0';
+  iframe.style.padding = '0';
+
+  cloakWindow.document.body.style.margin = '0';
+  cloakWindow.document.body.style.padding = '0';
+  cloakWindow.document.body.appendChild(iframe);
+}
+
+
+cloaking.addEventListener('change', (e) => {
+  blankOn = e.target.checked;
+});
+
+    btn.addEventListener('click', function () {
+  btn.classList.toggle('moved');
+  drawer.classList.toggle('moved');
+
+  // Move the button alongside the drawer
+  if (drawer.classList.contains('moved')) {
+    btn.style.right = drawer.offsetWidth + 'px';
+  } else {
+    btn.style.right = '0';
+  }
+});
+
+
+    document.getElementById('go').addEventListener('click', function () {
+  const title = document.getElementById('tabTitle').value.trim();
+  const favic = document.getElementById('favic').value.trim();
+
+  if (blankOn === true) {
+    blankCloak(title, favic);
+  } else {
+    if (title !== "") {
+      document.title = title;
+    }
+    if (favic !== "") {
+      let iconLink = document.querySelector("link[rel~='icon']");
+      if (!iconLink) {
+        iconLink = document.createElement('link');
+        iconLink.rel = 'icon';
+        document.head.appendChild(iconLink);
+      }
+      iconLink.href = favic;
+    }
+  }
+});
+
+
+    backBtn.addEventListener('click', () => {
+      document.getElementById('page1').classList.remove('hidden');
+      document.getElementById('page1').classList.add('shown');
+      document.getElementById('page2').classList.remove('shown');
+      document.getElementById('page2').classList.add('hidden');
+    });
+    presetsBtn.addEventListener('click', () => {
+      document.getElementById('page2').classList.remove('hidden');
+      document.getElementById('page2').classList.add('shown');
+      document.getElementById('page1').classList.remove('shown');
+      document.getElementById('page1').classList.add('hidden');
+    });
+
+
+settingsBtn.addEventListener('click', () => {
+  settingsIcon.classList.toggle('rotated');
+  inSettings = !inSettings;
+
+  if (inSettings) {
+    // Store which page is currently shown
+    if (document.getElementById('page1').classList.contains('shown')) {
+      lastPage = 'page1';
+    } else if (document.getElementById('page2').classList.contains('shown')) {
+      lastPage = 'page2';
+    }
+
+    // Show settings page, hide others
+    document.getElementById('settingsPage').classList.add('shown');
+    document.getElementById('settingsPage').classList.remove('hidden');
+    document.getElementById('page1').classList.add('hidden');
+    document.getElementById('page1').classList.remove('shown');
+    document.getElementById('page2').classList.add('hidden');
+    document.getElementById('page2').classList.remove('shown');
+    
+  } else {
+    // Return to whichever page was active before
+    document.getElementById('settingsPage').classList.add('hidden');
+    document.getElementById('settingsPage').classList.remove('shown');
+    document.getElementById(lastPage).classList.add('shown');
+    document.getElementById(lastPage).classList.remove('hidden');
+  }
+});
+
+function createIconButt(id, name, favicon) {
+  const newButt = document.createElement('button');
+  newButt.id = id;
+  newButt.className = 'icon-button';
+  newButt.style.backgroundImage = 'url(' + favicon + ')';
+  document.getElementById('button-container').appendChild(newButt);
+
+  newButt.addEventListener('click', () => {
+    if (blankOn === true) {
+      blankCloak(name, favicon);
+    } else {
+      document.title = name;
+      let iconLink = document.querySelector("link[rel~='icon']");
+      if (!iconLink) {
+        iconLink = document.createElement('link');
+        iconLink.rel = 'icon';
+        document.head.appendChild(iconLink);
+      }
+      iconLink.href = favicon;
+    }
+  });
+}
+
+
+for(let i = 0; i < presetNames.length; i++) {
+  createIconButt('button' + i, presetNames[i], presetFavicons[i]);
+}
