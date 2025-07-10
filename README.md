@@ -45,5 +45,4 @@ javascript:(function(){if(document.getElementById('side-button'))return;var link
 ## What's Next?
 
 - Tab Presets
-
-thats it lol i cant think of anything else to add cuz this is light
+- about:blank cloaking
